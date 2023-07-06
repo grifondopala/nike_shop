@@ -7,12 +7,12 @@ import ReactNode from "react";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-      <>
+      <div>
           <Navbar/>
-          <div className={'mb-[400px]'}>
+          <div className={'mb-[400px] mt-[20px] min-h-screen'}>
               {children}
           </div>
           <Footer/>
-      </>
+      </div>
   )
 }

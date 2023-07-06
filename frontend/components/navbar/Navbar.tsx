@@ -8,7 +8,7 @@ export const Navbar = () => {
     return(
         <nav>
             <div className={`w-full bg-simple-gray h-[36px] flex flex-row box-border pr-[30px] pl-[30px] items-center`}>
-                <Image src={"/person-logo.svg"} alt={'person-logo'} width={'25'} height={'24'}/>
+                <Image src={"/navbar/person-logo.svg"} alt={'person-logo'} width={'25'} height={'24'}/>
                 <div className={'flex flex-row ml-auto mr-0 items-center'}>
                     <DefaultLink label={'Find a Store'} url={'/stores'} />
                     <DefaultLink label={'Help'} url={'/help'} />
@@ -17,7 +17,7 @@ export const Navbar = () => {
                 </div>
             </div>
             <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border pr-[30px] pl-[30px]`}>
-                <Image src={"/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
+                <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
                 <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit'}>
                     <SectionLink label={'New & Featured'} url={'/new'} />
                     <SectionLink label={'Men'} url={'/men'} />

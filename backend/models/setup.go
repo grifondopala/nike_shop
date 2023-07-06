@@ -36,4 +36,9 @@ func ConnectDataBase() {
 	} else {
 		fmt.Println("We are connected to the database ", DbDriver)
 	}
+
+	DB.AutoMigrate(&Cloth{})
+	DB.AutoMigrate(&ClothColor{})
+	DB.AutoMigrate(&ClothSize{})
+
 }
