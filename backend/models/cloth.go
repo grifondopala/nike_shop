@@ -3,6 +3,7 @@ package models
 import (
 	"database/sql/driver"
 	"github.com/jinzhu/gorm"
+	"net/url"
 )
 
 type PersonGender string
@@ -67,6 +68,17 @@ func GetClothById(id uint) (Cloth, error) {
 	var cloth Cloth
 	if err := DB.Where(id).Preload("ClothColor").Preload("ClothColor.ClothSize").First(&cloth).Error; err != nil {
 		return Cloth{}, err
+	}
+
+	return cloth, nil
+}
+
+func GetAllCloth(params url.Values) ([]Cloth, error) {
+	var cloth []Cloth
+
+	filter := ""
+	if err := DB.Where(filter).Preload("ClothColor").Find(&cloth).Error; err != nil {
+		return []Cloth{}, err
 	}
 
 	return cloth, nil

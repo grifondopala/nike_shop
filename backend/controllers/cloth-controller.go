@@ -42,3 +42,16 @@ func GetClothById(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"cloth": cloth})
 }
+
+func GetAllCloth(c *gin.Context) {
+
+	params := c.Request.URL.Query()
+
+	cloth, err := models.GetAllCloth(params)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"cloth": cloth})
+}

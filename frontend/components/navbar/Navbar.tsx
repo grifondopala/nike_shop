@@ -7,7 +7,7 @@ import Image from "next/image";
 export const Navbar = () => {
     return(
         <nav>
-            <div className={`w-full bg-simple-gray h-[36px] flex flex-row box-border pr-[30px] pl-[30px] items-center`}>
+            <div className={`w-full bg-simple-gray h-[36px] flex flex-row box-border pr-[150px] pl-[150px] items-center`}>
                 <Image src={"/navbar/person-logo.svg"} alt={'person-logo'} width={'25'} height={'24'}/>
                 <div className={'flex flex-row ml-auto mr-0 items-center'}>
                     <DefaultLink label={'Find a Store'} url={'/stores'} />
@@ -16,12 +16,12 @@ export const Navbar = () => {
                     <DefaultLink label={'Sign In'} url={'/sign-in'} />
                 </div>
             </div>
-            <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border pr-[30px] pl-[30px]`}>
+            <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border pr-[150px] pl-[150px]`}>
                 <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
                 <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit'}>
-                    <SectionLink label={'New & Featured'} url={'/new'} />
-                    <SectionLink label={'Men'} url={'/men'} />
-                    <SectionLink label={'Women'} url={'/women'} />
+                    <SectionLink label={'New & Featured'} url={'/things?sorted=newest'} />
+                    <SectionLink label={'Men'} url={'/things?person_gender[]=MEN&sorted=newest'} />
+                    <SectionLink label={'Women'} url={'/things?person_gender[]=WOMEN&sorted=newest'} />
                     <SectionLink label={'Kids'} url={'/kids'} />
                     <SectionLink label={'Sale'} url={'/sale'} />
                     <SectionLink label={'SNKRS'} url={'/snkrs'} />

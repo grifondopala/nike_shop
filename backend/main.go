@@ -18,6 +18,7 @@ func main() {
 	cloth := r.Group("/cloth")
 	cloth.POST("/create", controllers.CreateCloth)
 	cloth.GET("/getById/:id", controllers.GetClothById)
+	cloth.GET("/getAll", controllers.GetAllCloth)
 
 	clothColor := r.Group("/cloth-color")
 	clothColor.POST("/create", controllers.CreateClothColor)

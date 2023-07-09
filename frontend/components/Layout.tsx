@@ -9,7 +9,7 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
       <div>
           <Navbar/>
-          <div className={'mb-[400px] mt-[20px] min-h-screen'}>
+          <div className={'mb-[200px] mt-[20px] min-h-screen'}>
               {children}
           </div>
           <Footer/>

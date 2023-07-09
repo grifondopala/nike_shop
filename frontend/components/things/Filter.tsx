@@ -12,9 +12,13 @@ const filters = [
     "Socks"
 ]
 
-export function Filter(){
+export function Filter({filterVisible} : {filterVisible: boolean}){
     return(
-        <div className={'w-[100%] flex flex-col box-border'}>
+        <div className={'w-[100%] flex flex-col box-border' +
+                        (filterVisible
+                            ? " transition-all duration-[1.6s] -translate-x-0"
+                            : " transition-all duration-[0.8s] -translate-x-[400px] pointer-events-none"
+                        )}>
             <div className={'flex flex-col gap-2'}>
                 {filters.map((filter: string) =>
                     <p key={filter} className={'font-bold text-[16px] cursor-pointer'}>{filter}</p>
@@ -50,6 +54,16 @@ export function Filter(){
                         <input type={"checkbox"} value={"GIRLS"}/>
                         <label>Girls</label>
                     </div>
+                </div>
+            </div>
+            <hr className={'mt-[20px]'}/>
+            <div className={'mt-[20px] flex flex-col gap-2'}>
+                <p className={'font-bold text-[16px]'}>Price</p>
+                <div className={'grid grid-cols-[40%_60%] gap-2'}>
+                    <p>From: </p>
+                    <input className={'border-[1px] outline-none'}/>
+                    <p>To: </p>
+                    <input className={'border-[1px] outline-none'}/>
                 </div>
             </div>
         </div>
