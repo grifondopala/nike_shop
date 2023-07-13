@@ -5,10 +5,11 @@ import { Cloth } from "@/models/cloth";
 
 export function ClothBox({cloth}: {cloth: Cloth}){
 
-    const type = cloth.person_gender === 'MEN' ? 'Men\'s' : cloth.person_gender === 'WOMEN' ? 'Women\'s' : 'Unisex'
+    const type = cloth.person_gender === 'MEN' ? 'Men\'s' : cloth.person_gender === 'WOMEN'
+                 ? 'Women\'s' : cloth.kid_gender === 'BOYS' ? 'Boy\'s' : cloth.kid_gender === 'GIRLS' ? 'Girl\'s' : 'Unisex'
 
     return(
-        <div className={'w-full aspect-[1/1.2] cursor-pointer'} onClick={() => Router.push(`/things/${cloth.ID}-${cloth.cloth_color[0].ID}`)}>
+        <div className={'w-full aspect-[1/1.2] cursor-pointer'} onClick={() => Router.push(`/cloth/${cloth.ID}/${cloth.cloth_color[0].ID}`)}>
             <div className={'w-full relative aspect-square'}>
                 <Image src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${cloth.cloth_color[0].main_photo}`} alt={'123'} fill={true} objectFit={'cover'}/>
             </div>

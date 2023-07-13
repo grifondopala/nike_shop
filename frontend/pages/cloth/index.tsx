@@ -1,4 +1,4 @@
-import { ClothList } from "@/components/things/ClothList";
+import { ClothList } from "@/components/cloth/ClothList";
 import { useRouter } from "next/router";
 
 

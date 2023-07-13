@@ -17,6 +17,7 @@ module.exports = {
       'simple-gray': '#F5F5F5',
       'white': '#FFFFFF',
       'based-gray': '#7E7E7E',
+      'dark': '#111111'
     }
   },
   plugins: [],

@@ -19,10 +19,10 @@ export const Navbar = () => {
             <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border pr-[150px] pl-[150px]`}>
                 <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
                 <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit'}>
-                    <SectionLink label={'New & Featured'} url={'/things?sorted=newest'} />
-                    <SectionLink label={'Men'} url={'/things?person_gender[]=MEN&sorted=newest'} />
-                    <SectionLink label={'Women'} url={'/things?person_gender[]=WOMEN&sorted=newest'} />
-                    <SectionLink label={'Kids'} url={'/kids'} />
+                    <SectionLink label={'New & Featured'} url={'/cloth?sorted=newest'} />
+                    <SectionLink label={'Men'} url={'/cloth?person_gender=MEN&sorted=newest'} />
+                    <SectionLink label={'Women'} url={'/cloth?person_gender=WOMEN&sorted=newest'} />
+                    <SectionLink label={'Kids'} url={'/cloth?kid_gender=BOYS&kid_gender=GIRLS'} />
                     <SectionLink label={'Sale'} url={'/sale'} />
                     <SectionLink label={'SNKRS'} url={'/snkrs'} />
                 </div>
