@@ -6,6 +6,7 @@ import { GetSingleClothData } from "@/api/single-cloth";
 
 import { Cloth } from "@/models/cloth";
 import { ClothColor } from "@/models/cloth-color";
+import {AddFavorite} from "@/components/single-cloth/AddFavorite";
 
 
 interface SingleClothProps{
@@ -98,10 +99,7 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
                 <div className={'w-full mt-[20px] h-[60px] rounded-[20px] bg-dark flex justify-center items-center cursor-pointer select-none'}>
                     <p className={'text-white'}>Add to bag</p>
                 </div>
-                <div className={'w-full mt-[20px] h-[60px] rounded-[20px] bg-white border-[1px] cursor-pointer flex justify-center items-center gap-1 select-none'}>
-                    <p className={'text-dark'}>Favorite</p>
-                    <Image src={'/navbar/like.svg'} alt={'like-icon'} width={'18'} height={'18'}/>
-                </div>
+                <AddFavorite colorId={colorId as string} />
                 <p className={'mt-[20px]'}>{cloth?.description}</p>
             </div>
         </div>

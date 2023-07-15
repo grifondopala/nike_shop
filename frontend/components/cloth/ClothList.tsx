@@ -20,7 +20,8 @@ export function ClothList({params}: {params: ParsedUrlQuery}){
 
     useEffect(() => {
         async function getData(){
-            setData(await GetClothData(window.location.href))
+            const result = await GetClothData(window.location.href)
+            setData(result)
         }
         getData()
         const sorted = params["sorted"];

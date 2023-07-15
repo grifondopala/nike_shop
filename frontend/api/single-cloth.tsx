@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export async function GetSingleClothData(clothId){
 
     const response = await fetch(
@@ -7,7 +5,20 @@ export async function GetSingleClothData(clothId){
         {method: 'GET'}
     )
 
-    const data = await response.json();
+    return await response.json();
+}
 
-    return data;
+export async function AddToFavorite(token: string, cloth_color_refer: string){
+
+    let result = false
+
+    await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_IP}/favorite/create`,
+        {method: 'POST',
+             headers: {Authorization: `Bearer ${token}`},
+             body: JSON.stringify({cloth_color_refer: parseInt(cloth_color_refer)})}
+    ).then(() => result = true)
+
+    return result
+
 }
