@@ -21,7 +21,7 @@ func GetUserByID(uid uint) (User, error) {
 
 	var u User
 
-	if err := DB.First(&u, uid).Error; err != nil {
+	if err := DB.Preload("Favorite").First(&u, uid).Error; err != nil {
 		return u, errors.New("User not found!")
 	}
 

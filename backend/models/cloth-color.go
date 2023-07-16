@@ -25,3 +25,13 @@ func (c *ClothColor) Create() (*ClothColor, error) {
 	return c, nil
 
 }
+
+func GetClothColorById(id uint) (ClothColor, error) {
+
+	var clothColor ClothColor
+	if err := DB.Where(id).First(&clothColor).Error; err != nil {
+		return ClothColor{}, err
+	}
+
+	return clothColor, nil
+}

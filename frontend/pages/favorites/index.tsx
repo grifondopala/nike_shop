@@ -1,9 +1,9 @@
-function Favorites(){
-    return(
-        <div className={'w-[60%] ml-auto mr-auto'}>
+import { FavoriteList } from "@/components/favorites/Favorite";
 
-        </div>
+function FavoritePage(){
+    return(
+        <FavoriteList />
     )
 }
 
-export default Favorites
+export default FavoritePage

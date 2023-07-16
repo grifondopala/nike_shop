@@ -41,6 +41,7 @@ func main() {
 	favorite := r.Group("/favorite")
 	favorite.POST("/create", controllers.CreateFavorite)
 	favorite.GET("/getAll", controllers.GetFavorites)
+	favorite.POST("/delete", controllers.DeleteFavorite)
 
 	r.Run(":8080")
 }

@@ -1,6 +1,8 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import (
+	"github.com/jinzhu/gorm"
+)
 
 type Favorite struct {
 	gorm.Model
@@ -17,4 +19,16 @@ func (f *Favorite) Create() (*Favorite, error) {
 	}
 
 	return f, nil
+}
+
+func (f *Favorite) Delete() bool {
+
+	var err error
+
+	err = DB.Delete(&Favorite{}, f.ID).Error
+	if err != nil {
+		return false
+	}
+
+	return true
 }
