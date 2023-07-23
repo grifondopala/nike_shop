@@ -11,13 +11,13 @@ function MyApp({ Component, pageProps }) {
                     <title>Nike</title>
                 </Head>
                 <Layout>
-                    <Component {...pageProps} />
+                    {pageProps}
                 </Layout>
             </>
         )
     }
 
-    const getLayout = Component.getLayout ?? layout
+    const getLayout = Component.getLayout || ((page) => layout(page))
 
     return getLayout(<Component {...pageProps} />)
 

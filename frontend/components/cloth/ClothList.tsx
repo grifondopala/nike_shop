@@ -37,27 +37,28 @@ export function ClothList({params}: {params: ParsedUrlQuery}){
     const [label, setLabel] = useState("Cloth");
 
     return(
-        <div className={'border-box pl-[150px] pr-[150px]'}>
+        <div className={'border-box max-[800px]:pl-[30px] max-[800px]:pr-[30px] w-full pl-[150px] pr-[150px]'}>
             <div className={'flex flex-row h-[50px] items-center'}>
-                <p className={'font-bold text-[18px]'}>{label}</p>
-                <div className={'ml-auto mr-0 flex flex-row gap-[15px]'}>
-                    <div className={'flex flex-row gap-2 cursor-pointer select-none'} onClick={() => setFilterVisible((value) => !value)}>
-                        <p className={'font-bold text-[14px]'}>Hide filters</p>
-                        <Image src={'/cloth/hide-filters.svg'} alt={'hide icon'} width={'24'} height={'24'}/>
+                <p className={'font-bold text-[18px] max-[450px]:hidden'}>{label}</p>
+                <div className={'ml-auto mr-0 max-[450px]:w-full flex flex-row gap-[15px]'}>
+                    <div className={'flex flex-row gap-2 cursor-pointer select-none max-[450px]:ml-0 max-[450px]:mr-auto'}
+                         onClick={() => setFilterVisible((value) => !value)}>
+                        <p className={'font-bold text-[14px] mt-auto mb-auto'}>Hide filters</p>
+                        <Image src={'/cloth/hide-filters.svg'} alt={'hide icon'} width={'25'} height={'24'}/>
                     </div>
                     <Sort filterParams={filterParams}/>
                 </div>
             </div>
-            <div className={'grid mt-[50px] w-full' +
+            <div className={'max-[600px]:flex max-[600px]:flex-col min-[600px]:grid mt-[50px] w-full ' +
                 (filterVisible
-                        ? "transition-all duration-[0.8s] grid-cols-[10%_90%]"
+                        ? "transition-all duration-[0.8s] grid-cols-[20%_80%] max-[600px]:grid-cols-1"
                         : "transition-all delay-[0.6s] duration-[0.8s] grid-cols-[0%_100%]"
                 )}>
                 <Filter filterVisible={filterVisible} filterParams={filterParams} />
-                <div className={'grid grid-cols-3 gap-[5%] w-[100%] box-border ' +
+                <div className={'grid max-xl:grid-cols-2 max-[600px]:grid-cols-1 grid-cols-3 gap-[5%] w-[100%] box-border ' +
                     (filterVisible
-                        ? "transition-all duration-[0.8s] pl-[100px]"
-                        : "transition-all delay-[0.6s] duration-[0.8s] pl-0"
+                        ? "transition-all duration-[0.8s] pl-[50px] max-[600px]:pl-0 max-[600px]:mt-[30px]"
+                        : "transition-all delay-[0.6s] duration-[0.8s] pl-0 max-[600px]:mt-0"
                     )}>
                     {data.map((cloth: Cloth) => (
                         <ClothBox key={cloth.ID} cloth={cloth}/>

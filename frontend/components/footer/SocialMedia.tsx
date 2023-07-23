@@ -8,7 +8,7 @@ interface SocialMediaProps{
 export function SocialMedia({icon, url} : SocialMediaProps){
     return(
         <div>
-            <Image src={icon} alt={url} width={'40'} height={'40'}/>
+            <Image src={icon} alt={url} width={'40'} height={'40'} className={'h-auto w-auto'}/>
         </div>
     )
 }

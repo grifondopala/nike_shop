@@ -18,7 +18,7 @@ export function Auth(){
 
     if(typeof statusAuth === "undefined") {
         return (
-            <div className={'flex flex-col w-[400px] ml-auto mr-auto gap-4'}>
+            <div className={'flex flex-col w-[450px] ml-auto mr-auto gap-4 max-[450px]:w-[95%]'}>
                 <div className={'flex flex-row w-full gap-4'}>
                     <Image src={"/navbar/person-logo.svg"} alt={'person-logo'} width={'44'} height={'44'}/>
                     <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'44'}/>

@@ -6,7 +6,7 @@ import { GetSingleClothData } from "@/api/single-cloth";
 
 import { Cloth } from "@/models/cloth";
 import { ClothColor } from "@/models/cloth-color";
-import {AddFavorite} from "@/components/single-cloth/AddFavorite";
+import { AddFavorite } from "@/components/single-cloth/AddFavorite";
 
 
 interface SingleClothProps{
@@ -45,8 +45,9 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
     }
 
     return(
-        <div className={'mt-[50px] ml-auto mr-auto w-[60%] grid grid-cols-[70%_30%]'}>
-            <div className={'grid grid-cols-[10%_90%] gap-[20px]'}>
+        <div className={`mt-[50px] ml-auto mr-auto min-[800px]:w-[60%] max-[800px]:ml-[30px] max-[800px]:mr-[30px] min-[450px]:grid min-[450px]:grid-cols-[70%_30%]
+                         max-[450px]:flex max-[450px]:flex-col`}>
+            <div className={'grid grid-cols-[10%_90%] gap-[20px] w-full'}>
                 <div className={'flex flex-col gap-2'}>
                     {currentColor?.another_photo.map((url, index) => (
                         <div className={`w-full relative aspect-square rounded-md cursor-pointer 
@@ -57,7 +58,7 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
                         </div>
                     ))}
                 </div>
-                <div className={`w-[80%] relative aspect-square rounded-md select-none`}>
+                <div className={`w-[80%] max-[450px]:w-[calc(100%-30px)] relative aspect-square rounded-md select-none`}>
                     <Image className={`rounded-md`} src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${currentColor?.another_photo[pictureIndex]}`}
                            alt={'color'} fill={true} objectFit={'cover'}/>
                     <div className={'absolute flex flex-row right-0 bottom-0 mb-4 mr-4 gap-2'}>
@@ -72,15 +73,15 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
                     </div>
                 </div>
             </div>
-            <div className={'flex flex-col'}>
+            <div className={'flex flex-col max-[450px]:mt-[30px]'}>
                 <p className={'font-bold text-[18px]'}>{cloth?.name}</p>
                 <p className={'font-bold text-[14px]'}>{type} {cloth?.type}</p>
                 <p className={'font-bold text-[14px] mt-[20px]'}>{cloth?.cost} $</p>
-                <div className={'grid grid-cols-5 mt-[20px] gap-2'}>
+                <div className={'grid grid-cols-3 mt-[20px] gap-2'}>
                     {cloth?.cloth_color.map((color) =>
                         <div className={`w-full relative aspect-square rounded-md ${currentColor?.ID === color.ID ? 'border-2' : ''}`}>
                             <Image className={`rounded-md cursor-pointer`} src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${color.main_photo}`}
-                                   alt={'color'} fill={true} objectFit={'cover'} onClick={() => Router.push(`/cloth/${cloth?.ID}/${color.ID}`)}/>
+                                   alt={'color'} fill={true} objectFit={'fill'} onClick={() => Router.push(`/cloth/${cloth?.ID}/${color.ID}`)}/>
                         </div>
                     )}
                 </div>

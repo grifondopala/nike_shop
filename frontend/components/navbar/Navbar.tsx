@@ -43,8 +43,9 @@ export const Navbar = () => {
 
     return(
         <nav>
-            <div className={`w-full bg-simple-gray h-[36px] flex flex-row box-border pr-[150px] pl-[150px] items-center`}>
-                <Image src={"/navbar/person-logo.svg"} alt={'person-logo'} width={'25'} height={'24'}/>
+            <div className={`w-full bg-simple-gray h-[36px] flex flex-row box-border min-[800px]:pr-[150px] max-[800px]:pl-[30px] max-[800px]:pr-[30px] min-[800px]:pl-[150px] items-center
+                             max-[450px]:pl-2 max-[450px]:pr-2`}>
+                <Image src={"/navbar/person-logo.svg"} alt={'person-logo'} width={'24'} height={'24'}/>
                 <div className={'flex flex-row ml-auto mr-0 items-center'}>
                     <DefaultLink label={'Find a Store'} url={'/stores'} />
                     <DefaultLink label={'Help'} url={'/help'} />
@@ -52,9 +53,10 @@ export const Navbar = () => {
                     <AuthSection />
                 </div>
             </div>
-            <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border pr-[150px] pl-[150px]`}>
+            <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border min-[800px]:pr-[150px] max-[800px]:pl-[30px] max-[800px]:pr-[30px] min-[800px]:pl-[150px]
+                             max-[450px]:pl-2 max-[450px]:pr-2`}>
                 <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
-                <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit'}>
+                <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit max-[1300px]:hidden'}>
                     <SectionLink label={'New & Featured'} url={'/cloth?sorted=newest'} />
                     <SectionLink label={'Men'} url={'/cloth?person_gender=MEN&sorted=newest'} />
                     <SectionLink label={'Women'} url={'/cloth?person_gender=WOMEN&sorted=newest'} />
@@ -67,6 +69,14 @@ export const Navbar = () => {
                     <LikeButton />
                     <BasketButton />
                 </div>
+            </div>
+            <div className={'absolute min-[450px]:flex min-[450px]:flex-row max-[450px]:grid max-[450px]:grid-cols-3 left-0 right-0 m-auto w-fit min-[1300px]:hidden'}>
+                <SectionLink label={'New & Featured'} url={'/cloth?sorted=newest'} />
+                <SectionLink label={'Men'} url={'/cloth?person_gender=MEN&sorted=newest'} />
+                <SectionLink label={'Women'} url={'/cloth?person_gender=WOMEN&sorted=newest'} />
+                <SectionLink label={'Kids'} url={'/cloth?kid_gender=BOYS&kid_gender=GIRLS'} />
+                <SectionLink label={'Sale'} url={'/sale'} />
+                <SectionLink label={'SNKRS'} url={'/snkrs'} />
             </div>
         </nav>
     )

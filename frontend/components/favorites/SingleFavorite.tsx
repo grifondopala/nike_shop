@@ -21,14 +21,14 @@ export function SingleFavorite({favorite, deleteFromData}: {favorite: Favorite, 
                  onClick={() => Router.push(`/cloth/${favorite.cloth.ID}/${favorite.clothColor.ID}`)}>
                 <Image src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${favorite.clothColor.main_photo}`} alt={'photo'} fill={true} objectFit={'fill'} />
             </div>
-            <div className={'flex flex-col w-full'}>
-                <div className={'flex flex-row w-full'}>
+            <div className={'grid grid-cols-[calc(100%-24px)_24px] w-full'}>
+                <div className={'flex flex-col w-full'}>
                     <p className={'text-[18px]'}>{favorite.cloth.name}</p>
-                    <Image src={'/navbar/like.svg'} alt={'like-icon'} width={'24'} height={'24'} className={'ml-auto mr-0 cursor-pointer'}
-                           onClick={Delete}/>
+                    <p>{type} {favorite.cloth.type}</p>
+                    <p className={'font-bold'}>{favorite.cloth.cost} $</p>
                 </div>
-                <p>{type} {favorite.cloth.type}</p>
-                <p className={'font-bold'}>{favorite.cloth.cost} $</p>
+                <Image src={'/navbar/like.svg'} alt={'like-icon'} width={'24'} height={'24'} className={'ml-auto mr-0 cursor-pointer'}
+                       onClick={Delete}/>
             </div>
         </div>
     )

@@ -4,6 +4,7 @@ import (
 	"database/sql/driver"
 	"github.com/jinzhu/gorm"
 	"net/url"
+	"strings"
 )
 
 type PersonGender string
@@ -76,9 +77,37 @@ func GetClothById(id uint) (Cloth, error) {
 func GetAllCloth(params url.Values) ([]Cloth, error) {
 	var cloth []Cloth
 
-	filter := ""
-	if err := DB.Where(filter).Preload("ClothColor").Find(&cloth).Error; err != nil {
-		return []Cloth{}, err
+	var fields []string
+	var values []interface{}
+	if len(params["type"]) > 0 {
+		fields = append(fields, "type IN (?)")
+		values = append(values, params["type"])
+	}
+	if len(params["person_gender"]) > 0 {
+		fields = append(fields, "person_gender IN (?)")
+		values = append(values, params["person_gender"])
+	}
+
+	var orderField string
+	if len(params["sorted"]) > 0 {
+
+		switch params["sorted"][0] {
+		case "newest":
+			orderField = "id desc"
+		case "high-low":
+			orderField = "cost desc"
+		case "low-high":
+			orderField = "cost asc"
+		}
+
+		if err := DB.Order(orderField).Where(strings.Join(fields, " AND "), values...).Preload("ClothColor").Find(&cloth).Error; err != nil {
+			return []Cloth{}, err
+		}
+
+	} else {
+		if err := DB.Where(strings.Join(fields, " AND "), values...).Preload("ClothColor").Find(&cloth).Error; err != nil {
+			return []Cloth{}, err
+		}
 	}
 
 	return cloth, nil

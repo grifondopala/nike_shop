@@ -11,7 +11,7 @@ export function ClothBox({cloth}: {cloth: Cloth}){
     return(
         <div className={'w-full aspect-[1/1.2] cursor-pointer'} onClick={() => Router.push(`/cloth/${cloth.ID}/${cloth.cloth_color[0].ID}`)}>
             <div className={'w-full relative aspect-square'}>
-                <Image src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${cloth.cloth_color[0].main_photo}`} alt={'123'} fill={true} objectFit={'fill'}/>
+                <Image src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${cloth.cloth_color[0].main_photo}`} alt={'123'} fill={true} className={'w-auto h-auto object-fill'}/>
             </div>
             <div className={'flex flex-col box-border pt-3 pb-3'}>
                 <p className={'font-bold text-[18px]'}>{cloth.name}</p>
