@@ -4,10 +4,11 @@ import Router from "next/router";
 
 import { GetSingleClothData } from "@/api/single-cloth";
 
+import { AddFavorite } from "@/components/single-cloth/AddFavorite";
+import { AddBasket } from "@/components/single-cloth/AddBasket";
+
 import { Cloth } from "@/models/cloth";
 import { ClothColor } from "@/models/cloth-color";
-import { AddFavorite } from "@/components/single-cloth/AddFavorite";
-
 
 interface SingleClothProps{
     clothId: string | string[] | undefined,
@@ -97,9 +98,7 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
                         ))}
                     </div>
                 </div>
-                <div className={'w-full mt-[20px] h-[60px] rounded-[20px] bg-dark flex justify-center items-center cursor-pointer select-none'}>
-                    <p className={'text-white'}>Add to bag</p>
-                </div>
+                <AddBasket sizeId={sizeChosen}/>
                 <AddFavorite colorId={colorId as string} />
                 <p className={'mt-[20px]'}>{cloth?.description}</p>
             </div>

@@ -33,7 +33,7 @@ export const Navbar = () => {
 
         if(isAuth){
             return (
-                <div className={'box-border pl-4 pr-4 [&:not(:last-child)]:border-r-2 h-[21px]'}>
+                <div className={'box-border pl-4 pr-4 [&:not(:last-child)]:border-r-2 max-[450px]:pl-[6px] max-[450px]:pr-[6px] h-[21px]'}>
                     <label className={'text-[14px] font-bold cursor-pointer hover:underline'} onClick={ExitHandler}>Exit</label>
                 </div>
             )

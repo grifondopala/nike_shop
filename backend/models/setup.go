@@ -42,4 +42,5 @@ func ConnectDataBase() {
 	DB.AutoMigrate(&ClothColor{})
 	DB.AutoMigrate(&ClothSize{})
 	DB.AutoMigrate(&Favorite{})
+	DB.AutoMigrate(&BasketItem{})
 }

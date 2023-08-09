@@ -22,3 +22,18 @@ export async function AddToFavorite(token: string, cloth_color_refer: string){
     return result
 
 }
+
+export async function AddToBasket(token: string, cloth_size_refer: number){
+
+    let result = false
+    
+    await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_IP}/basket/create`,
+        {method: 'POST',
+            headers: {Authorization: `Bearer ${token}`},
+            body: JSON.stringify({cloth_size_refer})}
+    ).then(() => result = true)
+
+    return result
+
+}

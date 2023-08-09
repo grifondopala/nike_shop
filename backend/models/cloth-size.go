@@ -20,3 +20,15 @@ func (c *ClothSize) Create() (*ClothSize, error) {
 	return c, nil
 
 }
+
+func GetClothSize(id uint) (ClothSize, error) {
+
+	var item ClothSize
+
+	if err := DB.Find(&item, id).Error; err != nil {
+		return ClothSize{}, err
+	}
+
+	return item, nil
+
+}

@@ -7,7 +7,7 @@ interface LinkProp {
 
 export const DefaultLink = ({label, url}: LinkProp) => {
     return(
-        <div className={'box-border pl-4 pr-4 max-[450px]:pl-3 max-[450px]:pr-3 [&:not(:last-child)]:border-r-2 h-[21px]'}>
+        <div className={'box-border pl-4 pr-4 max-[450px]:pl-[6px] max-[450px]:pr-[6px] [&:not(:last-child)]:border-r-2 h-[21px]'}>
             <Link href={url} className={'text-[14px] font-bold cursor-pointer hover:underline'}>
                 {label}
             </Link>

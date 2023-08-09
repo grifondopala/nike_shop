@@ -68,9 +68,16 @@ export function Filter({filterVisible, filterParams} : FilterProps){
         const query = Object.assign({}, filterParams)
         Object.keys(query).forEach(key => query[key] === undefined && delete query[key])
 
+        if(minCost != '' && typeof minCost != 'undefined'){
+            query['minCost'] = minCost
+        }
+        if(maxCost != '' && typeof maxCost != 'undefined'){
+            query['maxCost'] = maxCost
+        }
+
         Router.push({
             pathname: '/cloth',
-            query: {...query, minCost, maxCost},
+            query: {...query},
         })
 
     }

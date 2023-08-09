@@ -22,7 +22,7 @@ export function Sort({filterParams}: {filterParams: FilterParams}){
     }
 
     return(
-        <div className={'w-[150px] max-[450px]:w-[100px] select-none'}>
+        <div className={'w-[150px] select-none'}>
             <div className={'flex flex-row gap-2 cursor-pointer bg-white'} onClick={() => setSortingVisible((value) => !value)}>
                 <p className={'font-bold text-[14px]'}>Sort by: {filterParams.sorted}</p>
                 <Image src={'/cloth/down-arrow.svg'} alt={'hide icon'} width={'14'} height={'14'} className={'ml-auto mr-0 w-auto h-auto' +
@@ -30,7 +30,7 @@ export function Sort({filterParams}: {filterParams: FilterParams}){
                         ? "transition-all duration-[0.3s] -rotate-180"
                         : "transition-all duration-[0.3s] rotate-0")}/>
             </div>
-            <div className={'absolute grid max-[450px]:w-[100px] w-[150px] gap-[2px] z-50 bg-white pr-2 border-box rounded-b-md shadow-md easy-in overflow-hidden ' +
+            <div className={'absolute grid w-[150px] gap-[2px] z-50 bg-white pr-2 border-box rounded-b-md shadow-md easy-in overflow-hidden ' +
                 (sortingVisible
                     ? "transition-all grid-rows-[1fr] duration-[0.3s]"
                     : "transition-all grid-rows-[0fr] duration-[0.3s] pointer-events-none")}>

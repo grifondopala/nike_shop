@@ -43,5 +43,10 @@ func main() {
 	favorite.GET("/getAll", controllers.GetFavorites)
 	favorite.POST("/delete", controllers.DeleteFavorite)
 
+	basket := r.Group("/basket")
+	basket.POST("/create", controllers.CreateBasketItem)
+	basket.GET("/getBasket", controllers.GetBasket)
+	basket.POST("/delete", controllers.DeleteBasketItem)
+
 	r.Run(":8080")
 }

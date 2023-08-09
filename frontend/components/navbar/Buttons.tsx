@@ -11,7 +11,7 @@ export const LikeButton = () => {
 
 export const BasketButton = () => {
     return(
-        <div className={'cursor-pointer'}>
+        <div className={'cursor-pointer'} onClick={() => Router.push("/basket")}>
             <Image src={'/navbar/basket.svg'} alt={'basket-icon'} width={'24'} height={'24'}/>
         </div>
     )

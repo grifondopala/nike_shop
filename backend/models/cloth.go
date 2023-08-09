@@ -88,6 +88,16 @@ func GetAllCloth(params url.Values) ([]Cloth, error) {
 		values = append(values, params["person_gender"])
 	}
 
+	if len(params["minCost"]) > 0 {
+		fields = append(fields, "cost >= ?")
+		values = append(values, params["minCost"][0])
+	}
+
+	if len(params["maxCost"]) > 0 {
+		fields = append(fields, "cost <= ?")
+		values = append(values, params["maxCost"][0])
+	}
+
 	var orderField string
 	if len(params["sorted"]) > 0 {
 

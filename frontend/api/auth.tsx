@@ -35,13 +35,11 @@ export async function Login(email: string, password: string){
 
 export async function CheckAuth(token: string){
 
-    let result = false;
-
-    await fetch(
+    const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_IP}/admin/user`,
         {method: 'GET', headers: {Authorization: `Bearer ${token}`}}
-    ).then(() => result = true)
+    )
 
-    return result
+    return response.ok
 
 }
