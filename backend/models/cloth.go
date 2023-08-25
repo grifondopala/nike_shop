@@ -98,6 +98,11 @@ func GetAllCloth(params url.Values) ([]Cloth, error) {
 		values = append(values, params["maxCost"][0])
 	}
 
+	if len(params["search"]) > 0 {
+		fields = append(fields, "name LIKE ?")
+		values = append(values, "%"+params["search"][0]+"%")
+	}
+
 	var orderField string
 	if len(params["sorted"]) > 0 {
 

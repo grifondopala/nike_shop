@@ -3,7 +3,7 @@ import { FilterParams } from "@/models/filter-params";
 import Router from "next/router";
 
 import { typeFilter, typeFilters } from "@/constants/type-filter";
-import {useState} from "react";
+import { useState } from "react";
 
 interface FilterProps{
     filterVisible: boolean,
@@ -83,7 +83,7 @@ export function Filter({filterVisible, filterParams} : FilterProps){
     }
 
     return(
-        <div className={'w-[100%] min-[600px]:flex min-[600px]:flex-col max-[600px]:grid box-border easy-in overflow-hidden' +
+        <div className={'w-[100%] min-[600px]:flex min-[600px]:flex-col max-[600px]:grid box-border easy-in overflow-hidden min-[600px]:min-w-[150px] ' +
                         (filterVisible
                             ? " transition-all min-[600px]:duration-[1.6s] min-[600px]:-translate-x-0 max-[600px]:grid-rows-[1fr] max-[600px]:duration-[0.8s]"
                             : " transition-all pointer-events-none min-[600px]:duration-[0.8s] min-[600px]:-translate-x-[400px] max-[600px]:grid-rows-[0fr] max-[600px]:duration-[0.8s]"

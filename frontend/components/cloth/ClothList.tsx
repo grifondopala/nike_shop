@@ -11,12 +11,17 @@ import { Cloth } from "@/models/cloth";
 import { FilterParams } from "@/models/filter-params";
 
 import { GetClothData } from "@/api/cloth-list";
+import Router from "next/router";
 
 
 export function ClothList({params}: {params: ParsedUrlQuery}){
 
     const [data, setData] = useState<Array<Cloth>>([])
-    const [filterParams, setFilterParams] = useState<FilterParams>({sorted: undefined, cost: undefined, kid_gender: undefined, person_gender: undefined, type: undefined})
+    const [filterParams, setFilterParams] = useState<FilterParams>({sorted: undefined, cost: undefined, kid_gender: undefined, person_gender: undefined, type: undefined, search: undefined})
+
+    const [filterVisible, setFilterVisible] = useState(true);
+
+    const [label, setLabel] = useState("");
 
     useEffect(() => {
         async function getData(){
@@ -29,17 +34,49 @@ export function ClothList({params}: {params: ParsedUrlQuery}){
         const kid_gender = params["kid_gender"];
         const cost = params["cost"];
         const type = params["type"];
-        setFilterParams({sorted, cost, type, person_gender, kid_gender})
+        const search = params["search"];
+        setFilterParams({sorted, cost, type, person_gender, kid_gender, search})
     }, [params])
 
-    const [filterVisible, setFilterVisible] = useState(true);
+    useEffect(() => {
+        let text = '';
+        if(filterParams.person_gender){
+            text+= (typeof filterParams.person_gender === 'string' ? filterParams.person_gender : filterParams.person_gender.join(', ')) + ' '
+        }
+        if(filterParams.type){
+            text+= (typeof filterParams.type === 'string' ? filterParams.type : filterParams.type.join(' & ')) + ' '
+        }else{
+            text+='clothes '
+        }
+        if(filterParams.search){
+            text+= `on request \'${filterParams.search}\'`;
+        }
+        text = text.toLowerCase().replace(/(^|\s)\S/g, function(a) {return a.toUpperCase()})
+        setLabel(text)
+    }, [filterParams])
 
-    const [label, setLabel] = useState("Cloth");
+    function DeleteSearch(){
+        const query = Object.assign({}, filterParams)
+        Object.keys(query).forEach(key => query[key] === undefined && delete query[key])
+
+        delete query["search"]
+
+        Router.push({
+            pathname: '/cloth',
+            query: {...query},
+        })
+    }
 
     return(
         <div className={'border-box max-[800px]:pl-[30px] max-[800px]:pr-[30px] w-full pl-[150px] pr-[150px]'}>
             <div className={'flex flex-row h-[50px] items-center'}>
-                <p className={'font-bold text-[18px] max-[450px]:hidden'}>{label}</p>
+                <p className={'font-bold text-[18px] max-[450px]:hidden select-none'}>{label}</p>
+                {filterParams.search && (
+                    <div className={'flex justify-center items-center cursor-pointer h-[24px] w-[24px] rounded-full ml-2 bg-based-gray'}
+                         onClick={DeleteSearch}>
+                        <img src={'/cloth/cross-icon.png'} className={'h-[16px] w-[16px]'}/>
+                    </div>
+                )}
                 <div className={'ml-auto mr-0 max-[450px]:w-full flex flex-row gap-[15px]'}>
                     <div className={'flex flex-row gap-2 cursor-pointer select-none max-[450px]:ml-0 max-[450px]:mr-auto'}
                          onClick={() => setFilterVisible((value) => !value)}>

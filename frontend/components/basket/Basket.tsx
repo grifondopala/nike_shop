@@ -14,7 +14,7 @@ export function Basket(){
         async function GetData(){
             const token = localStorage.getItem("token")
             const result = await GetBasket(token)
-            if(!result['error']){
+            if(!result['error'] && result.basket){
                 setData(result.basket)
                 const total = result.basket.reduce((sum: number, item) => sum + item.cost * item.amount, 0)
                 setTotalCost(total)
@@ -32,7 +32,7 @@ export function Basket(){
         const result = await DeleteBasketItem(id)
     }
 
-    if(data.length === 0){
+    if(!data || data.length === 0){
         return(
             <p className={'font-bold text-[24px] text-center'}>Your Basket is Empty</p>
         )

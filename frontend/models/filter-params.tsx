@@ -3,5 +3,6 @@ export interface FilterParams{
     person_gender: string | string[] | undefined,
     kid_gender: string | string[] | undefined,
     cost: string | string[] | undefined,
-    type: string | string[] | undefined
+    type: string | string[] | undefined,
+    search: string | string[] | undefined
 }

@@ -11,6 +11,7 @@ import { CheckAuth } from "@/api/auth";
 export const Navbar = () => {
 
     const [isAuth, setIsAuth] = useState<boolean>(false)
+    const [isSearching, setIsSearching] = useState<boolean>(false)
 
     useEffect(() => {
         async function CheckUser(){
@@ -56,7 +57,7 @@ export const Navbar = () => {
             <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border min-[800px]:pr-[150px] max-[800px]:pl-[30px] max-[800px]:pr-[30px] min-[800px]:pl-[150px]
                              max-[450px]:pl-2 max-[450px]:pr-2`}>
                 <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
-                <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit max-[1300px]:hidden'}>
+                <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit max-[1300px]:hidden ' + (isSearching ? 'hidden' : 'visible')}>
                     <SectionLink label={'New & Featured'} url={'/cloth?sorted=newest'} />
                     <SectionLink label={'Men'} url={'/cloth?person_gender=MEN&sorted=newest'} />
                     <SectionLink label={'Women'} url={'/cloth?person_gender=WOMEN&sorted=newest'} />
@@ -64,10 +65,10 @@ export const Navbar = () => {
                     <SectionLink label={'Sale'} url={'/sale'} />
                     <SectionLink label={'SNKRS'} url={'/snkrs'} />
                 </div>
-                <div className={'flex flex-row ml-auto mr-0 w-fit flex flex-row items-center gap-2'}>
-                    <Search />
-                    <LikeButton />
-                    <BasketButton />
+                <div className={'flex flex-row ml-auto mr-0 w-fit flex flex-row items-center gap-2 ' + (isSearching ? 'w-full' : '')}>
+                    <Search isSearching={isSearching} setIsSearching={setIsSearching}/>
+                    <LikeButton isSearching={isSearching}/>
+                    <BasketButton isSearching={isSearching}/>
                 </div>
             </div>
             <div className={'absolute min-[450px]:flex min-[450px]:flex-row max-[450px]:grid max-[450px]:grid-cols-3 left-0 right-0 m-auto w-fit min-[1300px]:hidden'}>
