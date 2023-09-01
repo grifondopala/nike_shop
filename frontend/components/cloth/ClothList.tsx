@@ -46,7 +46,7 @@ export function ClothList({params}: {params: ParsedUrlQuery}){
         if(filterParams.type){
             text+= (typeof filterParams.type === 'string' ? filterParams.type : filterParams.type.join(' & ')) + ' '
         }else{
-            text+='clothes '
+            text+='cloth '
         }
         if(filterParams.search){
             text+= `on request \'${filterParams.search}\'`;
@@ -69,14 +69,16 @@ export function ClothList({params}: {params: ParsedUrlQuery}){
 
     return(
         <div className={'border-box max-[800px]:pl-[30px] max-[800px]:pr-[30px] w-full pl-[150px] pr-[150px]'}>
-            <div className={'flex flex-row h-[50px] items-center'}>
-                <p className={'font-bold text-[18px] max-[450px]:hidden select-none'}>{label}</p>
-                {filterParams.search && (
-                    <div className={'flex justify-center items-center cursor-pointer h-[24px] w-[24px] rounded-full ml-2 bg-based-gray'}
-                         onClick={DeleteSearch}>
-                        <img src={'/cloth/cross-icon.png'} className={'h-[16px] w-[16px]'}/>
-                    </div>
-                )}
+            <div className={'flex flex-row h-[50px] items-center gap-2 justify-start max-[450px]:flex-col max-[450px]:gap-[20px]'}>
+                <div className={'flex flex-row items-center gap-2 max-[450px]:w-full'}>
+                    <label className={'font-bold inline-block text-[14px] max-[600px]:w-[calc(100%-40px)] select-none min-[600px]:text-[18px]'}>{label}</label>
+                    {filterParams.search && (
+                        <div className={'flex justify-center mr-0 ml-auto items-center cursor-pointer h-[24px] w-[24px] rounded-full bg-based-gray'}
+                             onClick={DeleteSearch}>
+                            <Image src={'/cloth/cross-icon.png'} width={'16'} height={'16'}/>
+                        </div>
+                    )}
+                </div>
                 <div className={'ml-auto mr-0 max-[450px]:w-full flex flex-row gap-[15px]'}>
                     <div className={'flex flex-row gap-2 cursor-pointer select-none max-[450px]:ml-0 max-[450px]:mr-auto'}
                          onClick={() => setFilterVisible((value) => !value)}>

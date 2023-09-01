@@ -51,7 +51,7 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
             <div className={'grid grid-cols-[10%_90%] gap-[20px] w-full'}>
                 <div className={'flex flex-col gap-2'}>
                     {currentColor?.another_photo.map((url, index) => (
-                        <div className={`w-full relative aspect-square rounded-md cursor-pointer 
+                        <div key={index} className={`w-full relative aspect-square rounded-md cursor-pointer 
                                         ${url === currentColor?.another_photo[pictureIndex] ? 'border-2' : ''}`}
                              onClick={() => setPictureIndex(index)}>
                             <Image className={`rounded-md`} src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${url}`}
@@ -80,7 +80,7 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
                 <p className={'font-bold text-[14px] mt-[20px]'}>{cloth?.cost} $</p>
                 <div className={'grid grid-cols-3 mt-[20px] gap-2'}>
                     {cloth?.cloth_color.map((color) =>
-                        <div className={`w-full relative aspect-square rounded-md ${currentColor?.ID === color.ID ? 'border-2' : ''}`}>
+                        <div key={color.ID} className={`w-full relative aspect-square rounded-md ${currentColor?.ID === color.ID ? 'border-2' : ''}`}>
                             <Image className={`rounded-md cursor-pointer`} src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${color.main_photo}`}
                                    alt={'color'} fill={true} objectFit={'fill'} onClick={() => Router.push(`/cloth/${cloth?.ID}/${color.ID}`)}/>
                         </div>
@@ -90,7 +90,7 @@ export function SingleCloth({clothId, colorId}: SingleClothProps){
                     <p className={'font-bold'}>Select Size</p>
                     <div className={'mt-[10px] grid grid-cols-3 gap-2'}>
                         {currentColor?.cloth_size.map((size) => (
-                            <div className={`w-full flex justify-center items-center h-[30px] rounded-md cursor-pointer select-none
+                            <div key={size.ID} className={`w-full flex justify-center items-center h-[30px] rounded-md cursor-pointer select-none
                                             ${size.ID === sizeChosen ? 'border-dark border-[2px]' : 'border-based-gray border-[1px]'}`}
                                 onClick={() => setSizeChosen(size.ID)}>
                                 {size.size}

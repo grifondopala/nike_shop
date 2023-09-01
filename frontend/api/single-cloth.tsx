@@ -1,4 +1,4 @@
-export async function GetSingleClothData(clothId){
+export async function GetSingleClothData(clothId: string | string[] | undefined){
 
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_IP}/cloth/getById/${clothId}`,

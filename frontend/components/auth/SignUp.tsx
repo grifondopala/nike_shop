@@ -25,7 +25,7 @@ export function SignUp({email}: {email: string}){
                 <Image src={"/navbar/person-logo.svg"} alt={'person-logo'} width={'44'} height={'44'}/>
                 <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'44'}/>
             </div>
-            <p className={'font-bold text-[24px]'}>Now let's get you registered with the Nike club.</p>
+            <p className={'font-bold text-[24px]'}>Now let&apos;s get you registered with the Nike club.</p>
             <div className={'flex flex-row gap-4'}>
                 <div className={'border-[1px] w-full h-[44px] box-border p-[5px] flex justify-center items-center rounded-[10px]'}>
                     <input className={'outline-none w-full'} placeholder={'Name'} onChange={(e) => setName(e.target.value)}/>

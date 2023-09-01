@@ -27,11 +27,11 @@ export function Footer(){
                 <p className={'text-based-gray'}>Investors</p>
                 <p className={'text-based-gray'}>Sustainbility</p>
             </div>
-            <div className={'flex flex-row justify-end gap-2 max-[450px]:flex-col max-[450px]:justify-start'}>
-                <SocialMedia icon={'/footer/twitter.svg'} url={''} />
-                <SocialMedia icon={'/footer/facebook.svg'} url={''} />
-                <SocialMedia icon={'/footer/youtube.svg'} url={''} />
-                <SocialMedia icon={'/footer/instagram.svg'} url={''} />
+            <div className={'flex flex-row justify-end gap-2 max-[1200px]:flex-col max-[1200px]:justify-start'}>
+                <SocialMedia icon={'/footer/twitter.svg'} url={'https://twitter.com/Nike'} />
+                <SocialMedia icon={'/footer/facebook.svg'} url={'https://www.facebook.com/nike'} />
+                <SocialMedia icon={'/footer/youtube.svg'} url={'https://www.youtube.com/user/nike'} />
+                <SocialMedia icon={'/footer/instagram.svg'} url={'https://instagram.com/nike'} />
             </div>
         </footer>
     )

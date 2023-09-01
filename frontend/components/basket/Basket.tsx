@@ -3,8 +3,11 @@ import { DeleteBasketItem, GetBasket } from "@/api/basket";
 import { BasketItem } from "@/models/basket";
 
 import { SingleBasket } from "@/components/basket/SingleBasket";
+import Router from "next/router";
 
 export function Basket(){
+
+    const [isAuth, setIsAuth] = useState<boolean>(true)
 
     const [data, setData] = useState<BasketItem[]>([])
 
@@ -13,10 +16,20 @@ export function Basket(){
     useEffect(() => {
         async function GetData(){
             const token = localStorage.getItem("token")
+            if(!token) {
+                setIsAuth(false)
+                return
+            }
             const result = await GetBasket(token)
-            if(!result['error'] && result.basket){
+
+            if(result['error']){
+                setIsAuth(false)
+                return
+            }
+
+            if(result.basket){
                 setData(result.basket)
-                const total = result.basket.reduce((sum: number, item) => sum + item.cost * item.amount, 0)
+                const total = result.basket.reduce((sum: number, item: BasketItem) => sum + item.cost * item.amount, 0)
                 setTotalCost(total)
             }
         }
@@ -25,16 +38,32 @@ export function Basket(){
 
     async function DeleteFromData(id: number){
         let newData = [...data]
-        newData = newData.filter((item) => item.id != id)
-        const total = newData.reduce((sum: number, item) => sum + item.cost * item.amount, 0)
+        newData = newData.filter((item: BasketItem) => item.id != id)
+        const total = newData.reduce((sum: number, item: BasketItem) => sum + item.cost * item.amount, 0)
         setTotalCost(total)
         setData(newData)
         const result = await DeleteBasketItem(id)
     }
 
+    if(!isAuth){
+        return(
+            <div className={'flex flex-col items-center gap-4 w-[350px] ml-auto mr-auto'}>
+                <p className={'font-bold text-[24px] text-center text-center w-full'}>Please login to your account</p>
+                <div className={'w-[150px] h-[50px] rounded-[25px] bg-dark select-none flex justify-center items-center cursor-pointer'} onClick={() => Router.push('/auth')}>
+                    <p className={'text-white'}>Sign In</p>
+                </div>
+            </div>
+        )
+    }
+
     if(!data || data.length === 0){
         return(
-            <p className={'font-bold text-[24px] text-center'}>Your Basket is Empty</p>
+            <div className={'w-[60%] ml-auto mr-auto flex flex-col max-[800px]:w-full flex flex-col items-center gap-4'}>
+                <p className={'font-bold text-[24px] text-center'}>Your Basket is Empty</p>
+                <div className={'w-[150px] h-[50px] rounded-[25px] bg-dark select-none flex justify-center items-center cursor-pointer'} onClick={() => Router.push('/cloth?sorted=newest')}>
+                    <p className={'text-white'}>Find Cloth</p>
+                </div>
+            </div>
         )
     }
 

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Router from "next/router";
+
 import { useEffect, useState } from "react";
 
 import { DefaultLink, SectionLink } from "@/components/navbar/Links";
@@ -6,6 +8,7 @@ import { Search } from "@/components/navbar/Search";
 import { BasketButton, LikeButton } from "@/components/navbar/Buttons";
 
 import { CheckAuth } from "@/api/auth";
+
 
 
 export const Navbar = () => {
@@ -56,7 +59,7 @@ export const Navbar = () => {
             </div>
             <div className={`w-full bg-white h-[60px] flex flex-row items-center box-border min-[800px]:pr-[150px] max-[800px]:pl-[30px] max-[800px]:pr-[30px] min-[800px]:pl-[150px]
                              max-[450px]:pl-2 max-[450px]:pr-2`}>
-                <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'}/>
+                <Image src={"/navbar/nike-logo.svg"} alt={'nike-logo'} width={'60'} height={'22'} className={'cursor-pointer'} onClick={() => Router.push('/')}/>
                 <div className={'absolute flex flex-row left-0 right-0 m-auto w-fit max-[1300px]:hidden ' + (isSearching ? 'hidden' : 'visible')}>
                     <SectionLink label={'New & Featured'} url={'/cloth?sorted=newest'} />
                     <SectionLink label={'Men'} url={'/cloth?person_gender=MEN&sorted=newest'} />
