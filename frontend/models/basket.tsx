@@ -5,4 +5,6 @@ export interface BasketItem{
     amount: number,
     cost: number,
     main_photo: string,
+    cloth_id: number,
+    color_id: number,
 }

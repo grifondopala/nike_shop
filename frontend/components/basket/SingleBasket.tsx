@@ -1,11 +1,12 @@
 import { BasketItem } from "@/models/basket";
 
 import Image from "next/image";
+import Router from "next/router";
 
 export function SingleBasket({item, deleteHandle}: {item: BasketItem, deleteHandle: any}){
     return(
         <div className={'w-full flex flex-row gap-4'}>
-            <div className={'h-[150px] w-[150px] relative aspect-square cursor-pointer'}>
+            <div className={'h-[150px] w-[150px] relative aspect-square cursor-pointer'} onClick={() => Router.push(`/cloth/${item.cloth_id}/${item.color_id}`)}>
                 <Image src={`${process.env.NEXT_PUBLIC_SERVER_IP}/static/${item.main_photo}`} alt={'photo'} fill={true} objectFit={'fill'} />
             </div>
             <div className={'grid grid-cols-[calc(100%-24px)_24px] w-full'}>

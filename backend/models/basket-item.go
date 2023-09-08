@@ -5,9 +5,8 @@ import "github.com/jinzhu/gorm"
 type BasketItem struct {
 	gorm.Model
 	ClothSizeRefer uint `json:"cloth_size_refer"`
-	UserRefer      uint `json:"user_refer"`
+	BasketRefer    uint `json:"basket_refer"`
 	Amount         uint `json:"amount"`
-	IsBought       bool `json:"is_bought" gorm:"default:false"`
 }
 
 func (b *BasketItem) Create() (*BasketItem, error) {
@@ -19,18 +18,6 @@ func (b *BasketItem) Create() (*BasketItem, error) {
 	}
 
 	return b, nil
-}
-
-func GetBasket(userId uint) ([]BasketItem, error) {
-
-	var basket []BasketItem
-
-	if err := DB.Where("user_refer = ? AND is_bought = false", userId).Find(&basket).Error; err != nil {
-		return []BasketItem{}, err
-	}
-
-	return basket, nil
-
 }
 
 func DeleteBasketItem(id uint) bool {

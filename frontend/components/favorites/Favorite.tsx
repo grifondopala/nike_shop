@@ -3,37 +3,33 @@ import { useEffect, useState } from "react";
 import { GetFavorites } from "@/api/favorites";
 import { Favorite } from "@/models/favorite";
 import { SingleFavorite } from "@/components/favorites/SingleFavorite";
-import Router from "next/router";
+import { NotAuth } from "@/components/components/NotAuth";
+import { ListEmpty } from "@/components/components/ListEmpty";
+import { useAuth } from "@/hooks/useAuth";
 
 export function FavoriteList(){
 
-    const [isAuth, setIsAuth] = useState<boolean>(true)
+    const auth = useAuth();
 
     const [data, setData] = useState<Favorite[]>([])
 
     useEffect(() => {
-        async function GetData(){
-            const token = localStorage.getItem("token")
+        async function GetData(): Promise<Favorite[]>{
 
-            if(!token) {
-                setIsAuth(false)
-                return
+            if(!auth.isAuth){
+                return [];
             }
 
-            const result = await GetFavorites(token)
+            const result = await GetFavorites(auth.token);
 
-            if(result['error']){
-                setIsAuth(false)
-                return
-            }
+            if(result['error']) return [];
 
-            if(result.favorites){
-                setData(result.favorites)
-            }
+            if(result.favorites) return result.favorites
 
+            return [];
         }
-        GetData()
-    }, [])
+        GetData().then(result => setData(result))
+    }, [auth.isAuth])
 
     function DeleteFromData(id: number){
         let newData = [...data]
@@ -41,27 +37,9 @@ export function FavoriteList(){
         setData(newData)
     }
 
-    if(!isAuth){
-        return(
-            <div className={'flex flex-col items-center gap-4 w-[350px] ml-auto mr-auto'}>
-                <p className={'font-bold text-[24px] text-center text-center w-full'}>Please login to your account</p>
-                <div className={'w-[150px] h-[50px] rounded-[25px] bg-dark select-none flex justify-center items-center cursor-pointer'} onClick={() => Router.push('/auth')}>
-                    <p className={'text-white'}>Sign In</p>
-                </div>
-            </div>
-        )
-    }
+    if(!auth.isAuth) return <NotAuth />
 
-    if(!data || data?.length === 0){
-        return(
-            <div className={'w-[60%] ml-auto mr-auto flex flex-col max-[800px]:w-full flex flex-col items-center gap-4'}>
-                <p className={'font-bold text-[24px] w-full text-center'}>List of favorite cloth is empty</p>
-                <div className={'w-[150px] h-[50px] rounded-[25px] bg-dark select-none flex justify-center items-center cursor-pointer'} onClick={() => Router.push('/cloth?sorted=newest')}>
-                    <p className={'text-white'}>Find Cloth</p>
-                </div>
-            </div>
-        )
-    }
+    if(!data || data.length === 0) return <ListEmpty label={'List of favorite cloth is empty'}/>
 
     return(
         <div className={'w-[60%] ml-auto mr-auto flex flex-col gap-[50px] max-[800px]:w-full max-[800px]:pl-[30px] max-[800px]:pr-[30px] max-[450px]:pl-2 max-[450px]:pr-2'}>

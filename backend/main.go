@@ -46,7 +46,9 @@ func main() {
 	basket := r.Group("/basket")
 	basket.POST("/create", controllers.CreateBasketItem)
 	basket.GET("/getBasket", controllers.GetBasket)
+	basket.GET("/getPayedBaskets", controllers.GetPayedBaskets)
 	basket.POST("/delete", controllers.DeleteBasketItem)
+	basket.POST("/pay", controllers.PayBasket)
 
 	r.Run(":8080")
 }
