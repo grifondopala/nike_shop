@@ -3,7 +3,7 @@ import { BasketItem } from "@/models/basket";
 import Image from "next/image";
 import Router from "next/router";
 
-export function SingleBasket({item, deleteHandle}: {item: BasketItem, deleteHandle: any}){
+export function SingleBasket({item, deleteHandle, isPayed}: {item: BasketItem, deleteHandle: any, isPayed: boolean}){
     return(
         <div className={'w-full flex flex-row gap-4'}>
             <div className={'h-[150px] w-[150px] relative aspect-square cursor-pointer'} onClick={() => Router.push(`/cloth/${item.cloth_id}/${item.color_id}`)}>
@@ -17,7 +17,10 @@ export function SingleBasket({item, deleteHandle}: {item: BasketItem, deleteHand
                     <p>Amount: {item.amount}</p>
                     <p>Total <label className={'font-bold'}>{item.cost * item.amount} $</label></p>
                 </div>
-                <Image src={'/navbar/basket.svg'} alt={'like-icon'} width={'24'} height={'24'} className={'ml-auto mr-0 cursor-pointer'} onClick={() => deleteHandle(item.id)}/>
+                {!isPayed &&
+                    <Image src={'/navbar/basket.svg'} alt={'like-icon'} width={'24'} height={'24'}
+                           className={'ml-auto mr-0 cursor-pointer'} onClick={() => deleteHandle(item.id)}/>
+                }
             </div>
         </div>
     )

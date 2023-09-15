@@ -70,7 +70,7 @@ export function Basket(){
                     <p className={'font-bold text-[24px] text-center'}>Your Basket</p>
                     <div className={'w-full flex flex-col gap-[50px] mt-4'}>
                         {data?.map((item) => (
-                            <SingleBasket item={item} key={item.id} deleteHandle={DeleteFromData}/>
+                            <SingleBasket item={item} key={item.id} deleteHandle={DeleteFromData} isPayed={false}/>
                         ))}
                     </div>
                 </div>

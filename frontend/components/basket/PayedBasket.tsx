@@ -12,7 +12,7 @@ export function PayedBasket({data}: {data: BasketItem[]}){
             <div className={'w-full fle  x flex-col gap-[50px]'}>
                 <div className={'w-full flex flex-col gap-[50px] mt-4'}>
                     {data?.map((item) => (
-                        <SingleBasket item={item} key={item.id} />
+                        <SingleBasket item={item} key={item.id} isPayed={true} />
                     ))}
                 </div>
             </div>
